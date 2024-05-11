@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết quả tìm kiếm cho từ khóa "{{ keyword }}"</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+        
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        li a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        li a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kết quả tìm kiếm cho từ khóa "{{ keyword }}"</h1>
+    <ul>
+        {% for row in data %}
+        <li><a href="/detail/{{ row[0] }}">{{ row[2] }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

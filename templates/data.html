@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data from MySQL</title>
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+table td {
+    text-align: left;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+form {
+    margin-top: 20px;
+    text-align: center;
+}
+
+input[type="text"] {
+    padding: 8px;
+    width: 200px;
+}
+
+button {
+    padding: 8px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination a, .pagination strong {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 4px;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    color: #333;
+    border-radius: 4px;
+}
+
+.pagination strong {
+    background-color: #333;
+    color: #fff;
+}
+
+.pagination a:hover {
+    background-color: #f2f2f2;
+}
+
+    </style>
+<body>
+    <h1>Crawl data wikipedia</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Chuyên mục</th>
+                <th>Tiêu đề</th>
+                <th>Mô tả</th>
+                <th>Xem chi tiết</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td><a href="/detail/{{ row[0] }}">More</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <!-- Form tìm kiếm -->
+<form action="/search" method="GET">
+    <input type="text" name="keyword" placeholder="Nhập từ khóa...">
+    <button type="submit">Tìm kiếm</button><br><br>
+</form>
+
+<table border="1">
+    <!-- Table hiển thị dữ liệu -->
+</table>
+    </table>
+<!-- Phân trang -->
+<div class="pagination">
+    {% if total_pages > 1 %}
+        {% if page > 1 %}
+            <a href="?page=1">&laquo; First</a>
+            <a href="?page={{ page - 1 }}">&lsaquo; Prev</a>
+        {% endif %}
+        {% for num in range(1, total_pages + 1) %}
+            {% if num == page %}
+                <strong>{{ num }}</strong>
+            {% else %}
+                <a href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+        {% if page < total_pages %}
+            <a href="?page={{ page + 1 }}">Next &rsaquo;</a>
+            <a href="?page={{ total_pages }}">Last &raquo;</a>
+        {% endif %}
+    {% endif %}
+</div>
+
+</body>
+</html>

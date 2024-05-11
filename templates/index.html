@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crawling Data with Wiki</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #222;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        main {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        section {
+            width: 100%;
+            margin-right: 30px;
+        }
+
+        aside {
+            width: 30%;
+        }
+
+        footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer-content .footer-left,
+.footer-content .footer-center,
+.footer-content .footer-right {
+    flex-basis: 30%;
+}
+
+.footer-left h3,
+.footer-center h3,
+.footer-right h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.footer-left p,
+.footer-center ul,
+.footer-right p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-left p {
+    margin-bottom: 20px;
+}
+
+.footer-center ul {
+    padding: 0;
+    list-style: none;
+}
+
+.footer-center ul li {
+    margin-bottom: 5px;
+}
+
+.footer-center ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-right p {
+    margin-top: 10px;
+}
+
+.footer-right p:first-child {
+    margin-top: 0;
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+        img{
+            
+            width: 1419px;
+            height: 600px;
+        }
+
+        #about {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#about h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#about p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+#about ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#about ul li {
+    margin-bottom: 10px;
+}
+
+#about ul li strong {
+    color: #333;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#about ul li span {
+    color: #666;
+    font-size: 14px;
+}
+
+#guide, #contact {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#guide h2, #contact h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#guide p, #contact p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+#guide ul, #contact ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#guide ul li, #contact ul li {
+    margin-bottom: 10px;
+}
+
+#guide ul li a, #contact ul li {
+    color: #333;
+    text-decoration: none;
+}
+
+#guide ul li a:hover {
+    text-decoration: underline;
+}
+
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="container">
+            <h1>Crawling Data with wikipedia</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#guide">Guide</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <button onclick="redirectToDataPage()">Xem dữ liệu</button>
+                    <button onclick="redirectToSearchPage()">Search Data</button>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <img src="{{ url_for('static', filename='images/bg.jpeg') }}" alt="Placeholder Image">
+
+    <main class="container">
+        <section id="home">
+            <h2>Home</h2>
+            <p>Welcome to Crawl Wiki!.</p>
+            <p>Chào mừng đến với nhóm của chúng tôi và môn học này! Chúng tôi là một nhóm đam mê về công nghệ thông tin, và môn học này là nơi chúng tôi tập trung khám phá và học hỏi về một trong những lĩnh vực quan trọng nhất trong ngành công nghệ hiện đại: Web Crawling.
+
+<p>Nhóm của chúng tôi không chỉ là một nhóm học thuật, mà còn là một cộng đồng nơi mọi người cùng chia sẻ và khám phá kiến thức mới. Chúng tôi tin rằng sự đa dạng trong kinh nghiệm và kiến thức của mỗi thành viên là một phần quan trọng của sự thành công của nhóm.</p>
+
+<p>Môn học này không chỉ đề cập đến cách thức làm việc với Python và các thư viện như BeautifulSoup và requests để thu thập dữ liệu từ Internet, mà còn tập trung vào việc phân tích và xử lý dữ liệu thu thập được để đưa ra các thông tin hữu ích và hấp dẫn. <p>Chúng tôi cũng sẽ học về cách thiết kế các hệ thống web crawlers hiệu quả và linh hoạt.
+
+Môn học này cung cấp một cơ hội tuyệt vời để học hỏi từ những người có kinh nghiệm và chia sẻ kiến thức với nhau.</p> Bằng cách làm việc cùng nhau trên các dự án thực tế và thú vị, chúng ta sẽ có cơ hội áp dụng những gì đã học vào thực tế và phát triển kỹ năng của mình.</p>
+
+<p>Đến với môn học này, bạn sẽ được trải nghiệm không chỉ những kiến thức lý thuyết mà còn cả những ứng dụng thực tế, từ việc thu thập thông tin từ các trang web đến việc phân tích và hiểu rõ dữ liệu. Chúng tôi hy vọng rằng sau khi hoàn thành môn học này, bạn sẽ có kiến thức và kỹ năng cần thiết để thực hiện các dự án web crawling của riêng bạn và đóng góp vào sự phát triển của cộng đồng công nghệ thông tin.
+
+<p>Hãy sẵn sàng cho một hành trình học tập thú vị và bổ ích cùng nhóm và môn học này! Chúng ta sẽ cùng nhau khám phá và tiến bộ.</p>
+
+        </section>
+
+        <section id="about">
+            <h2>Introducing members</h2>
+            <p>Sau đây là thông tin thành viên nhóm gồm :</p>
+            <ul>
+                <li>
+                    <strong>Huỳnh Tấn Anh</strong>
+                    <br>
+                    Role: Thành viên
+                    <br>
+                    Email: 2124802010xxx@student.tdmu.edu.vn
+                </li>
+                <li>
+                    <strong>Nguyễn Nhật Hào</strong>
+                    <br>
+                    Role: Thành viên
+                    <br>
+                    Email: 2124802010xxx@student.tdmu.edu.vn
+                </li>
+                <li>
+                    <strong>Trần N Phi Hùng</strong>
+                    <br>
+                    Role: Thành viên
+                    <br>
+                    Email: 2124802010xxx@student.tdmu.edu.vn
+                </li>
+            </ul>
+        </section>
+        
+
+        <section id="guide">
+            <h2>Guide</h2>
+            <p>Explore guides and tutorials related to Crawl:</p>
+            <ul>
+                <li><a href="#">Getting Started</a></li>
+                <li><a href="#">Advanced Techniques</a></li>
+                <li><a href="#">Troubleshooting</a></li>
+            </ul>
+        </section>
+        
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Get in touch with us:</p>
+            <ul>
+                <li>Email: contact@crawl.com</li>
+                <li>Phone: +1234567890</li>
+                <li>Address: 123 Street, City, Country</li>
+            </ul>
+        </section>
+        
+    </main>
+
+    
+
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h3>About Us</h3>
+                    <p>Crawl Wiki is a platform dedicated to providing information about web crawling and data extraction.</p>
+                </div>
+                <div class="footer-center">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Guide</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-right">
+                    <h3>Contact Us</h3>
+                    <p>Email: contact@crawlwiki.com</p>
+                    <p>Phone: +1234567890</p>
+                </div>
+            </div>
+            <p class="copyright">&copy; 2024 Crawl Wiki. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        function redirectToDataPage() {
+            window.location.href = "/data";
+        }
+        function redirectToSearchPage() {
+        window.location.href = "/search"; // Điều hướng đến trang tìm kiếm
+    }
+    </script>
+</body>
+</html>
